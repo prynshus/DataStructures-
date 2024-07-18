@@ -27,6 +27,9 @@ class heap{
       void destroyHeap();
       void print();
       void buildHeap(int*,int);
+      int findMin();
+      int deleteKth(int);
+      void RlargerElements(int,int);
 };
 
 int heap::Parent(int i){
@@ -131,6 +134,31 @@ void heap::buildHeap(int* list, int n){
     for(int i=0;i<n;i++){arr[i]=list[i];}
     size=n;
     for(int i=(n-1)/2;i>=0;i--){percolateDown(i);}
+}
+
+int heap::findMin(){
+    int min=1000;
+    for(int i=(size+1)/2;i<size;i++){
+        if(arr[i]<min){min=arr[i];}
+    }
+    return min;
+}
+
+int heap::deleteKth(int k){
+    if(k>=size){throw out_of_range("The index is out of range.");}
+    int key= arr[k];
+    arr[k]= arr[size-1];
+    size--;
+    percolateDown(k);
+    return key;
+}
+
+void heap::RlargerElements(int i,int k){
+    if(arr[i]==-1){return;}
+    if(arr[i]<=k){return;}
+    else if(arr[i]>k){cout<<arr[i]<<" ";}
+    RlargerElements(leftChild(i),k);
+    RlargerElements(rightChild(i),k);
 }
 
 class heapOperation{
