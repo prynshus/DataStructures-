@@ -49,6 +49,7 @@ class LinkedList{
         int getPostion(int);
         void insert(int,int);
         void remove(int);
+        void removeData(int);
 
 };
 

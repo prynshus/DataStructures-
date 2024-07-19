@@ -33,6 +33,18 @@ void LinkedList::remove(int pos){
     length--;
 }
 
+void LinkedList::removeData(int data){
+    Node* temp=head;
+    int pos=0;
+    while(temp){
+        if(temp->data==data){break;}
+        temp=temp->next;
+        pos++;
+    }
+    if(!temp){return;}
+    remove(pos);
+}
+
 void LinkedList::insert(int data, int pos){
 
     if(pos<0)
