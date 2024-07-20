@@ -50,6 +50,7 @@ class LinkedList{
         void insert(int,int);
         void remove(int);
         void removeData(int);
+        bool find(int);
 
 };
 

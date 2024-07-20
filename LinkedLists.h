@@ -45,6 +45,15 @@ void LinkedList::removeData(int data){
     remove(pos);
 }
 
+bool LinkedList::find(int data){
+    Node* temp=head;
+    while(temp){
+        if(temp->data==data){return true;}
+        temp=temp->next;
+    }
+    return false;
+}
+
 void LinkedList::insert(int data, int pos){
 
     if(pos<0)
