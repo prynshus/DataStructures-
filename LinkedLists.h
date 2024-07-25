@@ -99,7 +99,9 @@ void LinkedList::printList(){
     }
 
     while(temp!=NULL){
-        cout<<temp->data<<" ";
+        cout<<temp->data<<"|";
+        if(temp->weight!=INT_MIN){cout<<temp->weight<<" ";}
+        else{cout<<" ";}
         temp=temp->next;
     }
 }

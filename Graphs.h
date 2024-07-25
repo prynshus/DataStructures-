@@ -225,6 +225,22 @@ class adjListGraph{
             E++;
         }
 
+        void addEdge(int u, int v,int weight){
+            validateVertex(u);
+            validateVertex(v);
+            adjList[u]->insert(v,adjList[u]->length);
+            Node* temp=adjList[u]->head;
+            while(temp->next!=NULL){temp=temp->next;}
+            temp->weight=weight;
+            if(choice){
+                adjList[v]->insert(u,adjList[v]->length);
+                Node* temp=adjList[v]->head;
+                while(temp->next!=NULL){temp=temp->next;}
+                temp->weight=weight;
+            }
+
+        }
+
         void removeEdge(int u,int v){
             validateVertex(v);
             validateVertex(u);
@@ -287,6 +303,7 @@ void adjListGraph::BFS(){
 class graphOperations{
     public:
        void unweightedShortestPath(adjListGraph, int);
+       void bellmanFordAlgorithm(adjListGraph, int);
 };
 
 void graphOperations::unweightedShortestPath(adjListGraph g,int data){
@@ -317,4 +334,29 @@ void graphOperations::unweightedShortestPath(adjListGraph g,int data){
     cout<<endl;
     delete[] path;
     delete[] dist;
+}
+
+void graphOperations::bellmanFordAlgorithm(adjListGraph g, int s){
+    queue<int> q;
+    int v,w;
+    q.push(s);
+    int* dist = new int[g.Vertices()];
+    int* path = new int[g.Vertices()];
+    for(int i=0;i<g.Vertices();i++){dist[i]=INT_MAX;}
+    dist[s]=0;
+    while(!q.empty()){
+        v = q.front();
+        q.pop();
+        Node* temp = g.adjList[v]->head;
+        while(temp){
+            int d = dist[v] + temp->weight;
+            if(d<dist[w]){
+                dist[v] = d;
+                path[w] = v;
+                
+            }
+            temp=temp->next;
+        }
+    }
+
 }

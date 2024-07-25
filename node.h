@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <climits>
 #ifndef NODE_H
 #define NODE_H
 using namespace std;
@@ -7,6 +8,7 @@ using namespace std;
 class Node{
     public:
         int data;
+        int weight = INT_MIN;
         Node* next;
         Node(){
             data=0;
